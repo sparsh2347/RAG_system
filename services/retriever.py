@@ -16,6 +16,9 @@ BUCKET_NAME = os.getenv("BUCKET_NAME")
 
 genai.configure(api_key=GEMINI_API_KEY)
 
+HF_CACHE = os.path.join(os.getcwd(), "hf_cache")
+os.makedirs(HF_CACHE, exist_ok=True)
+os.environ["HF_HOME"] = HF_CACHE
 
 class Retriever:
     """

@@ -33,11 +33,21 @@ class VectorStore:
             return None
         return blob.download_as_bytes()
 
-    def add_embeddings(self, embedded_chunks):
-        vectors = [chunk["embedding"] for chunk in embedded_chunks]
-        vectors = np.array(vectors, dtype=np.float32)
+    def add_embeddings(self, embedded_chunks,flush_every=1000):
+        """
+        Adds embeddings in batches to avoid holding too much in RAM.
+        flush_every: number of vectors after which to flush to GCS
+        """
+        vectors = np.array([chunk["embedding"] for chunk in embedded_chunks], dtype=np.float32)
         self.index.add(vectors)
         self.metadata.extend(embedded_chunks)
+
+        if len(self.metadata) >= flush_every:
+            print(f"💾 Batch limit reached ({len(self.metadata)} chunks). Flushing to GCS...")
+            self.save()
+            # Clear local metadata but keep FAISS in memory
+            self.metadata.clear()
+
 
     def save(self):
         # Create a temp file, close it so FAISS can write on Windows
