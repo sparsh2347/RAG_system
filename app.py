@@ -6,6 +6,7 @@ from pydantic import BaseModel, HttpUrl
 from typing import List
 from dotenv import load_dotenv
 from main import process_document, query_system  # your existing logic functions
+import uvicorn 
 
 load_dotenv()
 
@@ -59,3 +60,7 @@ async def run_hackrx(request: HackRxRequest, authorization: str = Header(None, a
 @app.get("/")
 async def root():
     return {"status": "HackRx Retrieval API is up and running!"}
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))  # Use PORT env var or default to 8000 locally
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
