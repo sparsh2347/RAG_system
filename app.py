@@ -54,7 +54,7 @@ async def run_hackrx(request: HackRxRequest, authorization: str = Header(None, a
         except Exception as e:
             answers.append(f"Failed to answer question: {str(e)}")
 
-    return {"answers": answers}
+    return {"Answers": answers}
 
 # Optional: Root health check endpoint
 @app.get("/")
