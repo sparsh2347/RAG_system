@@ -60,64 +60,26 @@ class Evaluator:
             - Maintain professional and legally sound language.
 
             **5. Response format**:
-            Answer:
-            <Direct and concise answer to the question>
-
-            Conditions:
-            - <Condition/requirement/exclusion 1>
-            - <Condition/requirement/exclusion 2>
-            - ...
-
-            Evidence:
-            - "<Exact supporting quote from context>"
-            - "<Exact supporting quote from context>"
-
-            **5. Insufficient information**:
-            If the provided excerpts do not fully answer the question, say:
+            
+            Rules:
+            1. Answers must be short, precise, and factual — similar to bullet-point policy statements.
+            2. No speculation, no extra explanation, no vague language.
+            3. Use the same style as official insurance clauses: clear, concise, formal.
+            4. Do not use “maybe”, “generally”, or “it appears”.
+            5. If the question cannot be answered from the provided context, reply exactly:  
             "The provided documents do not contain enough information to answer this."
+            6. Always base your response strictly on the context — no outside knowledge.
+            7. Responses must be **single, self-contained statements** that directly answer the question. 
 
+            Example styles:  
+            - "A grace period of thirty days is provided for premium payment after the due date to renew or continue the policy without losing continuity benefits."  
+            - "The policy has a waiting period of 36 months from the first inception date for pre-existing diseases."  
+            - "Yes, the policy covers maternity expenses subject to a 24-month continuous coverage requirement."
+
+            Output format:
+            <One short, precise factual statement>
             ---
-
-            ### Examples
-
-            **Example 1**  
-            Context:  
-            "Section 4: The policy covers surgical treatments for orthopedic conditions, including knee and hip replacement surgeries, provided the insured has completed a 2-year continuous coverage period. Cosmetic procedures are excluded."  
-
-            Question:  
-            "Does this policy cover knee surgery?"  
-
-            Expected Answer:  
-            Answer: Yes, the policy covers knee surgery.  
-
-            Conditions:  
-            - The insured must have completed 2 years of continuous coverage.  
-            - Cosmetic procedures are excluded.  
-
-            Evidence:  
-            - "The policy covers surgical treatments for orthopedic conditions, including knee and hip replacement surgeries."  
-            - "Provided the insured has completed a 2-year continuous coverage period."  
-
-            ---
-
-            **Example 2**  
-            Context:  
-            "Clause 8.2: Damages resulting from floods are excluded unless the property owner has purchased an additional flood protection rider."  
-
-            Question:  
-            "Is flood damage covered?"  
-
-            Expected Answer:  
-            Answer: No, flood damage is not covered under the standard policy.  
-
-            Conditions:  
-            - Flood damage is only covered if an additional flood protection rider is purchased.  
-
-            Evidence:  
-            - "Damages resulting from floods are excluded unless the property owner has purchased an additional flood protection rider."  
-
-            ---
-
+            
             Context:
             {context_text}
 
